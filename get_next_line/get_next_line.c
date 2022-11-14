@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:30:18 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/14 13:34:10 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:57:22 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,31 +90,39 @@ int	main(void)
 }
 */
 
-char	*ft_create_page(t_info *data)
+void	ft_str_cpy(char *dst, char *src)
 {
 	int	i;
 
-	i = 0;
-	while (i < BUFFER_SIZE)
-		i++;
-	data->book[]
+	i = -1;
+	while (src[++i])
+		dst[i] = src[i];
+}
+
+void	ft_create_page(t_info *data, char **book)
+{
+	book[data->fd] = data->new;
 }
 
 char	*get_next_line(int fd)
 {
-	static t_info	t_info;
-	char			*new_str;
+	t_info		t_info;
+	static char	*book[FD_MAX + 1];
 
 	t_info.fd = fd;
-	t_info.read_val = read(fd, t_info.new, BUFFER_SIZE);
-	if (!t_info.book[fd])
-		
+	t_info.new = "test";
+	t_info.end_line = 0; // end of the line for the book
+	if (!book[fd])
+		ft_create_page(&t_info, book);
+	else
+		printf("%s", book[fd]);
 	return (NULL);
 }
 
 int	main(void)
 {
 	get_next_line(1);
+	get_next_line(0);
 	get_next_line(1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/14 12:52:21 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:50:55 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,61 +22,42 @@ int	ft_strlen(char *s1)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t coun, size_t size)
 {
-	char	*tmp;
-	int		tmp_size;
-
-	tmp = malloc(count * size);
-	if (!tmp)
-		return (NULL);
-	tmp_size = count * size;
-	while (tmp_size >= 0)
-		tmp[tmp_size--] = 0;
-	return (tmp);
-}
-
-char	*ft_str_dup(char *s1)
-{
-	int		i;
-	int		size;
 	char	*new;
+	size_t	i;
 
-	size = ft_strlen(s1);
-	new = ft_calloc(size + 1, sizeof(char));
+	new = malloc(coun * size);
 	if (!new)
 		return (NULL);
-	i = -1;
-	while (s1[++i])
-		new[i] = s1[i];
+	i = coun * size;
+	while (i)
+		new[--i] = 0;
 	return (new);
 }
 
-void	*ft_super_free(void *p)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (p)
-		free(p);
-	return (NULL);
-}
-
-/*
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	char	*r;
 	size_t	i;
+	size_t	j;
+	char	*new;
 
-	if (!s)
+	if (!s1 || !s2)
 		return (NULL);
 	i = 0;
-	if (start < ft_strlen(s))
-		while (s[i + start] && len > i)
-			i++;
-	r = ft_calloc(i * sizeof(char) + 1, 1);
-	if (!r)
+	j = 0;
+	new = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	if (!new)
 		return (NULL);
-	if (start >= ft_strlen(s))
-		return (r);
-	ft_strlcpy(r, &s[start], i + 1);
-	return (r);
+	while (s1[i])
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		new[i + j] = s2[j];
+		j++;
+	}
+	return (new);
 }
-*/
