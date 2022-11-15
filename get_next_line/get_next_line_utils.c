@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/14 18:50:55 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:59:23 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int	ft_strlen(char *s1)
 	return (i);
 }
 
-void	*ft_calloc(size_t coun, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	char	*new;
 	size_t	i;
 
-	new = malloc(coun * size);
+	new = malloc(count * size);
 	if (!new)
 		return (NULL);
-	i = coun * size;
+	i = count * size;
 	while (i)
 		new[--i] = 0;
 	return (new);
