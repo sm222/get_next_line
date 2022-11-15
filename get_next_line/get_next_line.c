@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:30:18 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/14 18:57:22 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:46:47 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,39 +90,57 @@ int	main(void)
 }
 */
 
-void	ft_str_cpy(char *dst, char *src)
+int	ft_find_line(char *s)
 {
 	int	i;
 
-	i = -1;
-	while (src[++i])
-		dst[i] = src[i];
+	i = 0;
+	while (i < BUFFER_SIZE && s[i] != '\n' && s[i])
+		i++;
+	return (i);
+}
+
+void	ft_str_cpy(char *dst, char *src, int *s)
+{
+	*s = 0;
+	while (*s < BUFFER_SIZE && src[*s] != '\n' && src[*s])
+	{
+		dst[*s] = src[*s];
+		*s += 1;
+	}
 }
 
 void	ft_create_page(t_info *data, char **book)
 {
-	book[data->fd] = data->new;
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = ft_calloc(ft_find_line(data->new) + 1, sizeof(char));
+	ft_str_cpy(str, data->new, &i);
+	book[data->fd] = str;
+	free(str);
 }
 
 char	*get_next_line(int fd)
 {
 	t_info		t_info;
-	static char	*book[FD_MAX + 1];
+	static char	*book[INT32_MAX];
 
 	t_info.fd = fd;
-	t_info.new = "test";
+	t_info.new = "123\n456789";
+	//t_info.read_val = read(fd, t_info.new, BUFFER_SIZE);
 	t_info.end_line = 0; // end of the line for the book
 	if (!book[fd])
 		ft_create_page(&t_info, book);
 	else
-		printf("%s", book[fd]);
+		printf("out - %s", book[fd]);
 	return (NULL);
 }
 
 int	main(void)
 {
 	get_next_line(1);
-	get_next_line(0);
 	get_next_line(1);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/14 18:59:23 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:12:52 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *s1)
+int	ft_strlen(const char *s1)
 {
 	int	i;
 
