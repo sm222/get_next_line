@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:32:00 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/17 14:40:55 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:37:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,8 @@
 # endif
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1
 # endif
-
-typedef struct s_info
-{
-	char	*new;
-	int		end_line;
-	int		fd;
-	int		read_val;
-	char	*re_val;
-}	t_info;
 
 char	*get_next_line(int fd);
 int		ft_strlen(const char *s1);
