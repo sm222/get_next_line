@@ -1,5 +1,4 @@
 abc
-defghi
-jklmnop
+defghi jklmnop
 qrstuv
 wx yz

@@ -6,141 +6,78 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:30:18 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/15 18:46:47 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:31:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*
-char	*get_next_line(int fd)
+void	*xfree(void *p)
 {
-	char	*buff;
-	int		tmp[2];
-	int		size;
-	int		size_b;
-	char	*new;
-
-	if (fd < 0 || fd > FD_MAX || BUFFER_SIZE < 0)
-		return (NULL);
-	tmp[1] = 0;
-	size_b = 0;
-	size = -1;
-	buff = ft_calloc(BUFFER_SIZE + 2, sizeof(char));
-	while (tmp[1] >= 0 && size_b++ < BUFFER_SIZE)
-	{
-		tmp[1] = read(fd, tmp, 1);
-		if (tmp[1] <= 0)
-			return (ft_super_free(buff));
-		buff[++size] = (char)tmp[0];
-		if (tmp[0] == '\n' || tmp[1] <= 0)
-			break ;
-	}
-	new = ft_str_dup(buff);
-	free(buff);
-	return (new);
+	if (p)
+		free(p);
+	return (NULL);
 }
-*/
-
-/*
-char	*get_next_line(int fd)
-{
-	char	*buff;
-	char	tmp[1];
-	char	*new;
-	int		read_v;
-	int		i;
-
-	i = 0;
-	read_v = 1;
-	if (fd < 0 || fd > FD_MAX || BUFFER_SIZE <= 0)
-		return (NULL);
-	buff = ft_calloc(BUFFER_SIZE + 2, sizeof(char));
-	while (read_v > 0 && i < BUFFER_SIZE)
-	{
-		read_v = read(fd, tmp, BUFFER_SIZE);
-		buff[i] = tmp[0];
-		if (tmp[0] == '\n')
-			break ;
-	}
-	new = ft_str_dup0(tmp);
-	free(buff);
-	return (new);
-}
-*/
-
-/*
-int	main(void)
-{
-	int		fd;
-	char	*p;
-
-	fd = open("test.txt", O_RDWR);
-	p = get_next_line(fd);
-	printf("%s", p);
-		p = get_next_line(fd);
-	printf("%s", p);
-		p = get_next_line(fd);
-	printf("%s", p);
-		p = get_next_line(fd);
-	printf("%s", p);
-	free(p);
-	close(fd);
-	return (0);
-}
-*/
 
 int	ft_find_line(char *s)
 {
 	int	i;
 
-	i = 0;
-	while (i < BUFFER_SIZE && s[i] != '\n' && s[i])
-		i++;
-	return (i);
+	i = -1;
+	while (s[++i])
+		if (s[i] == '\n')
+			return (i);
+	return (-1);
 }
 
-void	ft_str_cpy(char *dst, char *src, int *s)
+char	*ft_str_cpy(char *dst, char *src)
 {
-	*s = 0;
-	while (*s < BUFFER_SIZE && src[*s] != '\n' && src[*s])
+	int	i;
+	int	j;
+
+	j = ft_find_line(src);
+	i = 0;
+	while (i <= j)
 	{
-		dst[*s] = src[*s];
-		*s += 1;
+		dst[i] = src[i];
+		i++;
 	}
+	return (dst);
 }
 
-void	ft_create_page(t_info *data, char **book)
+char	*chup(char *page)
 {
-	int		i;
-	char	*str;
+	size_t	i;
 
 	i = 0;
-	str = ft_calloc(ft_find_line(data->new) + 1, sizeof(char));
-	ft_str_cpy(str, data->new, &i);
-	book[data->fd] = str;
-	free(str);
 }
 
 char	*get_next_line(int fd)
 {
 	t_info		t_info;
-	static char	*book[INT32_MAX];
+	static char	*book[100];
 
+	t_info.new = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	t_info.fd = fd;
-	t_info.new = "123\n456789";
-	//t_info.read_val = read(fd, t_info.new, BUFFER_SIZE);
-	t_info.end_line = 0; // end of the line for the book
 	if (!book[fd])
-		ft_create_page(&t_info, book);
-	else
-		printf("out - %s", book[fd]);
-	return (NULL);
+		book[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	t_info.read_val = read(fd, t_info.new, BUFFER_SIZE);
+	t_info.re_val = ft_strjoin(book[fd], t_info.new);
+	book[fd] = t_info.re_val;
+	return (t_info.re_val);
 }
 
 int	main(void)
 {
-	get_next_line(1);
-	get_next_line(1);
+	int	fd;
+
+	fd = open("test.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+
+
+
+	close (fd);
 	return (0);
 }
