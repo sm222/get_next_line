@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/18 17:14:49 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/20 17:27:15 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,43 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (new);
 }
 
-char	*ft_str_dup(char *s, size_t size)
+char	*ft_str_dup(char *s, int *start)
 {
 	size_t	i;
+	int		tmp;
 	char	*dup;
 
 	i = 0;
-	dup = ft_calloc(size + 1, sizeof(char));
+	while (s[i + *start] != 0 && s[i + *start] != '\n')
+		i++;
+	if (s[i + *start] == '\n')
+		i++;
+	dup = ft_calloc(i + 1, sizeof(char));
 	if (!dup)
 		return (NULL);
-	while (i < size && s[i])
-	{
-		dup[i] = s[i];
+	tmp = ++i;
+	while (i--)
+		dup[i] = s[i + *start];
+	*start = *start + tmp;
+	return (dup);
+}
+
+char	*ft_str_dup2(char *s, int *start)
+{
+	size_t	i;
+	int		tmp;
+	char	*dup;
+
+	i = 0;
+	while (s && s[i + *start] != 0)
 		i++;
+	dup = ft_calloc(i + 1, sizeof(char));
+	if (!dup)
+		return (NULL);
+	tmp = ++i;
+	while (i--)
+	{
+		dup[i] = s[i + *start];
 	}
 	return (dup);
 }

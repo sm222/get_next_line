@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": true,
       "externalConsole": false,
-      "cwd": "/Users/anboisve/Documents/42_cursus/get_next_linegit/get_next_line",
-      "program": "/Users/anboisve/Documents/42_cursus/get_next_linegit/get_next_line/build/Debug/outDebug",
+      "cwd": "/Users/anboisve/Documents/42_cursus/get_next_linegit",
+      "program": "/Users/anboisve/Documents/42_cursus/get_next_linegit/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb"
     }

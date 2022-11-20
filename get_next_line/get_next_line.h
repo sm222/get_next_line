@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:32:00 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/18 17:37:54 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/20 16:36:08 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # endif
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 20
 # endif
 
 char	*get_next_line(int fd);
@@ -32,7 +32,8 @@ int		ft_strlen(const char *s1);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_find_line(char *s);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_str_dup(char *s, size_t size);
+char	*ft_str_dup(char *s, int *size);
+char	*ft_str_dup2(char *s, int *start);
 void	*xfree(void *p);
 
 #endif // GET_NEXT_LINE_H
