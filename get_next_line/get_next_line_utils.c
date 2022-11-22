@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/22 16:26:09 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:13:42 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ char	*ft_strjoin(char *sfree, char *s2)
 		new[s1_i + s2_i] = s2[s2_i];
 	while (s1_i--)
 		new[s1_i] = sfree[s1_i];
-	xfree(sfree);
-	return (new);
+	return (xfree(sfree), new);
 }

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:30:18 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/22 17:31:22 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:21:22 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_tiny_split(char *s, size_t *cut)
 			break ;
 	new = ft_calloc(i + 1, sizeof(char));
 	if (!new)
-		return (NULL);
+		return (new = xfree(new));
 	*cut = i;
 	while (i--)
 		new[i] = s[i];
@@ -62,9 +62,7 @@ char	*get_next_line(int fd)
 		book = ft_strjoin(book, t_info.tmp);
 	}
 	t_info.tmp = xfree(t_info.tmp);
-	if (t_info.rv == -1)
-		return (book = xfree(book));
-	if (t_info.rv <= 0 && *book == 0)
+	if (t_info.rv == -1 || (t_info.rv <= 0 && *book == 0))
 		return (book = xfree(book));
 	t_info.tmp = ft_tiny_split(book, &t_info.cut);
 	t_info.tmp2 = book;
@@ -72,6 +70,7 @@ char	*get_next_line(int fd)
 	return (t_info.tmp2 = xfree(t_info.tmp2), t_info.tmp);
 }
 
+/*
 int	main(void)
 {
 	int	fd;
@@ -83,9 +82,4 @@ int	main(void)
 	close (fd);
 	return (0);
 }
-
-/*
-tmp = buffer
-buffer = str_joi(buffer, other)
-free(tmp)
 */
