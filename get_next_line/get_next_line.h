@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:32:00 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/20 16:36:08 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:31:36 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h>
 # include <fcntl.h>
 
 # ifndef FD_MAX
@@ -24,16 +23,21 @@
 # endif
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 20
+#  define BUFFER_SIZE 1
 # endif
 
-char	*get_next_line(int fd);
-int		ft_strlen(const char *s1);
-void	*ft_calloc(size_t count, size_t size);
-int		ft_find_line(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_str_dup(char *s, int *size);
-char	*ft_str_dup2(char *s, int *start);
+typedef struct s_info
+{
+	char	*tmp;
+	char	*tmp2;
+	int		rv;
+	size_t	cut;
+}	t_info;
+
 void	*xfree(void *p);
+void	*ft_calloc(size_t size, size_t count);
+char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+void	*ft_bzero(void *p, size_t size);
 
 #endif // GET_NEXT_LINE_H
