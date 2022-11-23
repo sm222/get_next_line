@@ -6,17 +6,15 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:32:44 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/23 12:38:15 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:38:50 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
 # include <limits.h>
 
 # ifndef BUFFER_SIZE

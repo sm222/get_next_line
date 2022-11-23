@@ -6,17 +6,15 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:32:00 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/23 12:38:03 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:38:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
 # include <limits.h>
 
 # ifndef BUFFER_SIZE

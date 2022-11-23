@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:31:43 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/23 12:44:06 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:05:08 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_tiny_split(char *s, size_t *cut)
 	while (s[i])
 		if (s[i++] == '\n')
 			break ;
-	new = ft_calloc(i + 1, sizeof(char));
+	new = ft_calloc(1 + i, sizeof(char));
 	if (!new)
 		return (new = xfree(new));
 	*cut = i;

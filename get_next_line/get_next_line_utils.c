@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/22 22:22:40 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/23 16:59:51 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,12 @@ void	*xfree(void *p)
 
 void	*ft_calloc(size_t size, size_t count)
 {
-	char				*new;
-	unsigned long long	i;
+	char	*new;
 
 	new = malloc(size * count);
 	if (!new)
 		return (new = xfree(new));
-	i = size * count;
-	while (i--)
-		new[i] = 0;
+	new = ft_bzero(new, size * count);
 	return (new);
 }
 

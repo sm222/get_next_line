@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:30:18 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/23 12:40:41 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:51:41 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,3 @@ char	*get_next_line(int fd)
 	book = ft_strjoin(NULL, book + t_val.cut);
 	return (xfree(t_val.tmp2), t_val.tmp);
 }
-
-/*
-int	main(void)
-{
-	int		fd;
-	char	*tmp;
-
-	fd = open("test.txt", O_RDONLY);
-	tmp = get_next_line(fd);
-	printf("%s", tmp);
-	free(tmp);
-	//
-		tmp = get_next_line(fd);
-	printf("%s", tmp);
-	free(tmp);
-	//
-		tmp = get_next_line(fd);
-	printf("%s", tmp);
-	free(tmp);
-	//
-	close (fd);
-	return (0);
-}
-*/

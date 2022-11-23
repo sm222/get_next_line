@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:34:37 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/23 12:35:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:06:15 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,12 @@ void	*xfree(void *p)
 
 void	*ft_calloc(size_t size, size_t count)
 {
-	char				*new;
-	unsigned long long	i;
+	char	*new;
 
 	new = malloc(size * count);
 	if (!new)
 		return (new = xfree(new));
-	i = size * count;
-	while (i--)
-		new[i] = 0;
+	new = ft_bzero(new, size * count);
 	return (new);
 }
 
