@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 13:30:18 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/23 12:40:41 by anboisve         ###   ########.fr       */
+/*   Created: 2022/11/23 12:31:43 by anboisve          #+#    #+#             */
+/*   Updated: 2022/11/23 12:44:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_tiny_split(char *s, size_t *cut)
 {
@@ -46,52 +46,28 @@ char	ft_find(char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	*book;
+	static char	*book[OPEN_MAX];
 	t_info		t_val;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
-		return (book = xfree(book));
-	if (!book)
-		book = ft_calloc(1, sizeof(char));
+		return (NULL);
+	if (!book[fd])
+		book[fd] = ft_calloc(1, sizeof(char));
 	t_val.rv = BUFFER_SIZE;
 	t_val.tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	while (t_val.rv > 0 && ft_find(book) == '0')
+	while (t_val.rv > 0 && ft_find(book[fd]) == '0')
 	{
 		t_val.tmp = ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
 		t_val.rv = read(fd, t_val.tmp, BUFFER_SIZE);
 		if (t_val.rv <= 0)
 			break ;
-		book = ft_strjoin(book, t_val.tmp);
+		book[fd] = ft_strjoin(book[fd], t_val.tmp);
 	}
 	t_val.tmp = xfree(t_val.tmp);
-	if (t_val.rv == -1 || (t_val.rv <= 0 && *book == 0))
-		return (book = xfree(book), NULL);
-	t_val.tmp = ft_tiny_split(book, &t_val.cut);
-	t_val.tmp2 = book;
-	book = ft_strjoin(NULL, book + t_val.cut);
+	if (t_val.rv == -1 || (t_val.rv <= 0 && *book[fd] == 0))
+		return (book[fd] = xfree(book[fd]), NULL);
+	t_val.tmp = ft_tiny_split(book[fd], &t_val.cut);
+	t_val.tmp2 = book[fd];
+	book[fd] = ft_strjoin(NULL, book[fd] + t_val.cut);
 	return (xfree(t_val.tmp2), t_val.tmp);
 }
-
-/*
-int	main(void)
-{
-	int		fd;
-	char	*tmp;
-
-	fd = open("test.txt", O_RDONLY);
-	tmp = get_next_line(fd);
-	printf("%s", tmp);
-	free(tmp);
-	//
-		tmp = get_next_line(fd);
-	printf("%s", tmp);
-	free(tmp);
-	//
-		tmp = get_next_line(fd);
-	printf("%s", tmp);
-	free(tmp);
-	//
-	close (fd);
-	return (0);
-}
-*/

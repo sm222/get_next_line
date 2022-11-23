@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 13:32:00 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/23 12:38:03 by anboisve         ###   ########.fr       */
+/*   Created: 2022/11/23 12:32:44 by anboisve          #+#    #+#             */
+/*   Updated: 2022/11/23 12:38:15 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -37,4 +37,4 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 void	*ft_bzero(void *p, size_t size);
 
-#endif // GET_NEXT_LINE_H
+#endif // GET_NEXT_LINE_BONUS_H
