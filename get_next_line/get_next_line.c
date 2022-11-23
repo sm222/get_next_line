@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:30:18 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/22 18:21:22 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:44:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*get_next_line(int fd)
 	static char	*book;
 	t_info		t_info;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (book = xfree(book));
 	if (!book)
 		book = ft_calloc(1, sizeof(char));
 	t_info.rv = BUFFER_SIZE;
@@ -79,6 +81,8 @@ int	main(void)
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
+
+
 	close (fd);
 	return (0);
 }

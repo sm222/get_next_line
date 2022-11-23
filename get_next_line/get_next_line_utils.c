@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/22 18:13:42 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:22:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*ft_calloc(size_t size, size_t count)
 
 	new = malloc(size * count);
 	if (!new)
-		return (NULL);
+		return (new = xfree(new));
 	i = size * count;
 	while (i--)
 		new[i] = 0;
@@ -60,7 +60,7 @@ char	*ft_strjoin(char *sfree, char *s2)
 	s2_i = ft_strlen(s2);
 	new = ft_calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
-		return (NULL);
+		return (new = xfree(new));
 	while (s1_i + s2_i-- > s1_i)
 		new[s1_i + s2_i] = s2[s2_i];
 	while (s1_i--)
