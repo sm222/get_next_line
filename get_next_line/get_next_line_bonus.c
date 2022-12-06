@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:31:43 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/23 17:05:08 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:19:11 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_tiny_split(char *s, size_t *cut)
 			break ;
 	new = ft_calloc(1 + i, sizeof(char));
 	if (!new)
-		return (new = xfree(new));
+		return (new = ft_sfree(new));
 	*cut = i;
 	while (i--)
 		new[i] = s[i];
@@ -53,9 +53,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!book[fd])
 		book[fd] = ft_calloc(1, sizeof(char));
-	t_val.rv = BUFFER_SIZE;
 	t_val.tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	while (t_val.rv > 0 && ft_find(book[fd]) == '0')
+	while (ft_find(book[fd]) == '0')
 	{
 		t_val.tmp = ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
 		t_val.rv = read(fd, t_val.tmp, BUFFER_SIZE);
@@ -63,11 +62,11 @@ char	*get_next_line(int fd)
 			break ;
 		book[fd] = ft_strjoin(book[fd], t_val.tmp);
 	}
-	t_val.tmp = xfree(t_val.tmp);
+	t_val.tmp = ft_sfree(t_val.tmp);
 	if (t_val.rv == -1 || (t_val.rv <= 0 && *book[fd] == 0))
-		return (book[fd] = xfree(book[fd]), NULL);
+		return (book[fd] = ft_sfree(book[fd]), NULL);
 	t_val.tmp = ft_tiny_split(book[fd], &t_val.cut);
 	t_val.tmp2 = book[fd];
 	book[fd] = ft_strjoin(NULL, book[fd] + t_val.cut);
-	return (xfree(t_val.tmp2), t_val.tmp);
+	return (ft_sfree(t_val.tmp2), t_val.tmp);
 }
