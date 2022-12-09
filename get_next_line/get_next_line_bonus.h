@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:32:44 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/06 11:47:26 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/07 09:46:14 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	*ft_sfree(void *p);
 void	*ft_calloc(size_t size, size_t count);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
-void	*ft_bzero(void *p, size_t size);
+void	ft_bzero(void *p, size_t size);
 
 #endif // GET_NEXT_LINE_BONUS_H

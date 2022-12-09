@@ -6,17 +6,16 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:34:37 by anboisve          #+#    #+#             */
-/*   Updated: 2022/11/27 15:04:45 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:28:31 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	*ft_bzero(void *p, size_t size)
+void	ft_bzero(void *p, size_t size)
 {
 	while (size--)
 		((char *)p)[size] = 0;
-	return (p);
 }
 
 void	*ft_sfree(void *p)
@@ -33,7 +32,7 @@ void	*ft_calloc(size_t size, size_t count)
 	new = malloc(size * count);
 	if (!new)
 		return (new = ft_sfree(new));
-	new = ft_bzero(new, size * count);
+	ft_bzero(new, size * count);
 	return (new);
 }
 
@@ -62,5 +61,7 @@ char	*ft_strjoin(char *sfree, char *s2)
 		new[s1_i + s2_i] = s2[s2_i];
 	while (s1_i--)
 		new[s1_i] = sfree[s1_i];
+	if (*new == 0)
+		new = ft_sfree(new);
 	return (ft_sfree(sfree), new);
 }

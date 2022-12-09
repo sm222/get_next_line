@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:31:43 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/06 17:19:11 by anboisve         ###   ########.fr       */
+/*   Updated: 2022/12/07 09:47:24 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*get_next_line(int fd)
 	t_val.tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	while (ft_find(book[fd]) == '0')
 	{
-		t_val.tmp = ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
+		ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
 		t_val.rv = read(fd, t_val.tmp, BUFFER_SIZE);
 		if (t_val.rv <= 0)
 			break ;
