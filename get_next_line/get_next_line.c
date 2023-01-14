@@ -54,6 +54,7 @@ char	*get_next_line(int fd)
 	if (!book)
 		book = ft_calloc(1, sizeof(char));
 	t_val.tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	t_val.rv = 0;
 	while (ft_find(book) == '0')
 	{
 		ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
