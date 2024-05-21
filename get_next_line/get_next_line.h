@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:32:00 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/07 09:44:49 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:16:38 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_info
 {
 	char	*tmp;
 	char	*tmp2;
+	char	readtmp[BUFFER_SIZE + 1];
 	int		rv;
 	size_t	cut;
 }	t_info;

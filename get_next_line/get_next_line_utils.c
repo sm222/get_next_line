@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/09 09:29:10 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:15:10 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_strjoin(char *sfree, char *s2)
 	s2_i = ft_strlen(s2);
 	new = ft_calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
-		return (new = ft_sfree(new));
+		return (NULL);
 	while (s1_i + s2_i-- > s1_i)
 		new[s1_i + s2_i] = s2[s2_i];
 	while (s1_i--)

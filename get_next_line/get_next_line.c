@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:30:18 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/09 10:20:25 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:24:25 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ char	ft_find(char *s)
 	return ('0');
 }
 
+char	*safe_return(char **book, t_info *t_val)
+{
+	t_val->tmp = ft_tiny_split(*book, &t_val->cut);
+	t_val->tmp2 = book;
+	*book = ft_strjoin(NULL, *book + t_val->cut);
+	t_val->tmp2 = ft_sfree(t_val->tmp2);
+	return (t_val->tmp);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*book;
@@ -53,21 +62,18 @@ char	*get_next_line(int fd)
 		return (book = ft_sfree(book));
 	if (!book)
 		book = ft_calloc(1, sizeof(char));
-	t_val.tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	t_val.rv = 0;
 	while (ft_find(book) == '0')
 	{
-		ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
-		t_val.rv = read(fd, t_val.tmp, BUFFER_SIZE);
+		ft_bzero(t_val.readtmp, BUFFER_SIZE + 1);
+		t_val.rv = read(fd, t_val.readtmp, BUFFER_SIZE);
 		if (t_val.rv <= 0)
 			break ;
-		book = ft_strjoin(book, t_val.tmp);
+		book = ft_strjoin(book, t_val.readtmp);
 	}
-	t_val.tmp = ft_sfree(t_val.tmp);
 	if (t_val.rv == -1 || (t_val.rv <= 0 && *book == 0))
-		return (book = ft_sfree(book), NULL);
-	t_val.tmp = ft_tiny_split(book, &t_val.cut);
-	t_val.tmp2 = book;
-	book = ft_strjoin(NULL, book + t_val.cut);
-	return (ft_sfree(t_val.tmp2), t_val.tmp);
+	{
+		book = ft_sfree(book);
+		return (NULL);
+	}
+	return (safe_return(&book, &t_val));
 }
