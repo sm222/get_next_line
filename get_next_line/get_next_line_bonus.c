@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:31:43 by anboisve          #+#    #+#             */
-/*   Updated: 2022/12/07 09:47:24 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:53:22 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

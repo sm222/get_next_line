@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:31:55 by anboisve          #+#    #+#             */
-/*   Updated: 2024/05/21 18:15:10 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:46:45 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_bzero(void *p, size_t size)
 {
+	if (!p)
+		return ;
 	while (size--)
 		((char *)p)[size] = 0;
 }
@@ -56,7 +58,10 @@ char	*ft_strjoin(char *sfree, char *s2)
 	s2_i = ft_strlen(s2);
 	new = ft_calloc(s1_i + s2_i + 1, sizeof(char));
 	if (!new)
+	{
+		sfree = ft_sfree(sfree);
 		return (NULL);
+	}
 	while (s1_i + s2_i-- > s1_i)
 		new[s1_i + s2_i] = s2[s2_i];
 	while (s1_i--)
